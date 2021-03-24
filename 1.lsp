@@ -121,10 +121,10 @@
 
 ;функция member 
 (defun is-member (x list)
-     ( (lambda (first rest)
+     ( (lambda (p rest)
               (cond
                   ((null list) nil)
-                  ((equal first x) t)
+                  ((equal p x) t)
                   (t (is-member x rest ))
               )
        )(car list) (cdr list)
@@ -132,10 +132,10 @@
 )
 
 (defun МНОЖЕСТВО-Р (L) 
-    (   (lambda (first rest)
+    (   (lambda (p rest)
             (cond 
                   ((null L) "множество" )
-                  ( (is-member first rest ) "не множество" )
+                  ( (is-member p rest ) "не множество" )
                   ( t (МНОЖЕСТВО-Р rest) )
 
             )
@@ -151,10 +151,10 @@
 ;33. Определите функцию МНОЖЕСТВО, преобразующую список в множество.
 
 (defun МНОЖЕСТВО (L) 
-    (   (lambda (first rest)
+    (   (lambda (p rest)
             (cond 
                   ((null L) nil)
-                  ( (not (member first rest )) (cons first (МНОЖЕСТВО rest)) )
+                  ( (not (member p rest )) (cons p (МНОЖЕСТВО rest)) )
                   ( t (МНОЖЕСТВО rest) )
 
             )
