@@ -1,18 +1,56 @@
 ;6. Определите функцию, переводящую список чисел в список соответствующих им названий.
 
-(defun num-to-string(L)
-    ( cond
-        ( (null L) L )
-        ( t ( cons  ( format nil "~r" ( car L) ) ( num-to-string ( cdr L ) ) ) )
+(set `z `(   (0 ноль) (1 один) (2 два) (3 три) (4 четыре) (5 пять) (6 шесть) (7 семь) (8 восемь) (9 девять)
+             (10 десять) (11 одиннадцать) (12 двенадцать) (13 тринадцать) (14 четырнадцать) (15 пятнадцать) (16 шестнадцать) (17 семнадцать) (18 восемнадцать) (19 девятнадцать)
+             (20 двадцать) (30 тридцать) (40 сорок) (50 пятьдесят) (60 шестьдесят) (70 семьдесят) (80 восемьдесят) (90 девяносто) (100 сто) (200 двести) (300 триста) (400 четыреста) 
+             (500 пятьсот) (600 шестьсот) (700 семьсот) (800 восемьсот) (900 девятьсот)
+         )
+)
 
+
+(defun pars-num ( x &optional (des 10))
+    ((lambda (remX) 
+        ( cond 
+            ((= x 0) nil)
+            ((= remX 0) (pars-num (- x remX) ( * des 10) ))
+            (t (cons remX (pars-num(- x remX) ( * des 10) )))
+        )
+     ) (rem x des))
+)
+
+
+(defun search-num (x z)
+	(cond 
+        ((null z) nil)
+		((equal x (caar z)) (cadar z))
+		(t (search-num x (cdr z)))	
+	)
+)
+
+(defun num-string (x)
+        
+    (cond ((null x) nil)
+        (t (cons (search-num (car x) z) (num-string (cdr x))))		 
     )
+    
 )
 
 
 
-( print ( num-to-string '(12 10 3 193) ) )
-( print ( num-to-string '(1000 0 -1213) ) )
-( print ( num-to-string '( 1 ) ) )
+(defun num-to-string (x) 
+        (cond 
+            ((null x) nil)
+            ((search-num (car x) z) (cons (search-num (car x) z) (num-to-string (cdr x))) )
+            (t (cons (num-string (reverse (pars-num (car x)))) (num-to-string (cdr x))))		 
+        )
+)
+
+(print (num-to-string '(123 320 944 5 100 82 1)))
+(print (num-to-string '(12 10 3 193)))
+(print (num-to-string '(900 2 739)))
+
+
+
 
 ;16. Определите функцию, добавляющую элементы одного списка во второй список, начиная с заданной позиции.
 
