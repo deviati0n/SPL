@@ -56,27 +56,27 @@
 (print (УДАЛИТЬ-ЕСЛИ-НЕ (lambda (x) (numberp x)) '(1 a b c)) )
 
 ;9. Напишите генератор порождения чисел Фибоначчи: 0, 1, 1, 2, 3, 5, ...
-
-(defun fibonacci (n)
-        (cond 
-            ((= n 1) 0)
-            ((= n 2) 1)
-            ((= n 3) 1)   
-            (t (+ (fibonacci (- n 1)) (fibonacci (- n 2))))
-        )
-)
-
-(defun list-fibonacci (n &optional (step 1))
-        (cond
-            ((< n step) nil )
-            (t (cons (fibonacci step) (list-fibonacci n (+ step 1)))) 
+(defun fibonacci ()
+    (let ((a 1)(b 1)(c -1))
+         (lambda ()
+                 (setq c (cond 
+                             ((< c 0) 0)
+                             ((+ (setq a b) (setq b c)))
+                          )
+                 )
          )
+    )        
 )
+
 
 (print "9. Напишите генератор порождения чисел Фибоначчи: 0, 1, 1, 2, 3, 5, ...")
-(print (list-fibonacci 6))
-(print (list-fibonacci 10))
-(print (list-fibonacci 3))
+(setq c1 (fibonacci))
+(print (funcall c1))
+(print (funcall c1))
+(print (funcall c1))
+(print (funcall c1))
+(print (funcall c1))
+
 
 ;11. Определите фукнционал МНОГОФУН, который использует функции,
 ;являющиеся аргументами, по следующей схеме: (МНОГОФУН ’(f g ... h) x) ⇔ (LIST (f x) (g x) ... (h x)).
