@@ -1,6 +1,6 @@
 ;6. Определите функцию, переводящую список чисел в список соответствующих им названий.
 
-(set `z `(   (0 ноль) (1 один) (2 два) (3 три) (4 четыре) (5 пять) (6 шесть) (7 семь) (8 восемь) (9 девять)
+(set `num `(   (0 ноль) (1 один) (2 два) (3 три) (4 четыре) (5 пять) (6 шесть) (7 семь) (8 восемь) (9 девять)
              (10 десять) (11 одиннадцать) (12 двенадцать) (13 тринадцать) (14 четырнадцать) (15 пятнадцать) (16 шестнадцать) (17 семнадцать) (18 восемнадцать) (19 девятнадцать)
              (20 двадцать) (30 тридцать) (40 сорок) (50 пятьдесят) (60 шестьдесят) (70 семьдесят) (80 восемьдесят) (90 девяносто) (100 сто) (200 двести) (300 триста) (400 четыреста) 
              (500 пятьсот) (600 шестьсот) (700 семьсот) (800 восемьсот) (900 девятьсот)
@@ -19,18 +19,18 @@
 )
 
 
-(defun search-num (x z)
+(defun search-num (x num)
 	(cond 
-        ((null z) nil)
-		((equal x (caar z)) (cadar z))
-		(t (search-num x (cdr z)))	
+        ((null num) nil)
+		((equal x (caar num)) (cadar num))
+		(t (search-num x (cdr num)))	
 	)
 )
 
 (defun num-string (x)
         
     (cond ((null x) nil)
-        (t (cons (search-num (car x) z) (num-string (cdr x))))		 
+        (t (cons (search-num (car x) num) (num-string (cdr x))))		 
     )
     
 )
@@ -40,7 +40,7 @@
 (defun num-to-string (x) 
         (cond 
             ((null x) nil)
-            ((search-num (car x) z) (cons (search-num (car x) z) (num-to-string (cdr x))) )
+            ((search-num (car x) num) (cons (search-num (car x) num) (num-to-string (cdr x))) )
             (t (cons (num-string (reverse (pars-num (car x)))) (num-to-string (cdr x))))		 
         )
 )
