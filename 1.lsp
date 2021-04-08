@@ -36,15 +36,14 @@
 )
 
 
-
 (defun num-to-string (x) 
-    ((lambda (first rest)
+    ((lambda (first rest search-n)
         (cond 
             ((null x) nil)
-            ((search-num first num) (cons (search-num first num) (num-to-string rest)) )
+            (search-n (cons search-n (num-to-string rest)) )
             (t (cons (num-string (reverse (pars-num first))) (num-to-string rest)))		 
         )
-    )(car x)(cdr x))
+    )(car x)(cdr x)(search-num (car x) num))
 )
 
 (print "6. Определите функцию, переводящую список чисел в список соответствующих им названий.")
