@@ -38,12 +38,15 @@
 
 
 (defun num-to-string (x) 
+    ((lambda (first rest)
         (cond 
             ((null x) nil)
-            ((search-num (car x) num) (cons (search-num (car x) num) (num-to-string (cdr x))) )
-            (t (cons (num-string (reverse (pars-num (car x)))) (num-to-string (cdr x))))		 
+            ((search-num first num) (cons (search-num first num) (num-to-string rest)) )
+            (t (cons (num-string (reverse (pars-num first))) (num-to-string rest)))		 
         )
+    )(car x)(cdr x))
 )
+
 (print "6. Определите функцию, переводящую список чисел в список соответствующих им названий.")
 (print (num-to-string '(123 320 944 5 100 82 1)))
 (print (num-to-string '(12 10 3 193)))
