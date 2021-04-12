@@ -39,12 +39,13 @@
     `(if ,условие ,p ,q)
 )
 
+
 (print "3. Определите лисповскую форму (IF условие p q) в виде макроса.")
 
 (setq x '5 y '(1 2 3) z 'a)
 
 (print (if-m (numberp x) (* x x) 'not_a_number))
-(print (if-m (listp y) (mapcar 'list y) (cons y '(just an atom))))
+(print (if-m (listp y) (mapcar 'list y) (cons y '(- just an atom))))
 (print (if-m (listp z) (mapcar 'list z) (cons z '(- just an atom))))
 
 ;4. Определте в виде макроса форму (FIF тест отр нуль полож).
